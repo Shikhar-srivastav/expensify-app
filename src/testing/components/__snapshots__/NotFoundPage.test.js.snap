@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render the NotFoundPage 1`] = `
+<div>
+  <h3>
+    404!
+  </h3>
+  <p>
+    You seem to be lost
+  </p>
+  <Link
+    to="/"
+  >
+    Go back to home page
+  </Link>
+</div>
+`;

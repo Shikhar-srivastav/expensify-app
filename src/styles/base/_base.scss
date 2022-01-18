@@ -1,0 +1,13 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica';
+    font-size: $m-size;
+}
+
+.active {
+    font-weight: bold;
+}
