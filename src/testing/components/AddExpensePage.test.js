@@ -10,7 +10,7 @@ beforeEach(() => {
     navigateSpy = jest.fn();
     wrapper = shallow(
         <AddExpensePage
-            addExpense={addExpenseSpy}
+            startAddExpense={addExpenseSpy}
             navigate={navigateSpy}
         />
     );
