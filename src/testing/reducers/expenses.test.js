@@ -78,3 +78,13 @@ test('Edit an expense by invalid id', () => {
     const state = expensesReducer(dummyExpenses, action);
     expect(state).toEqual(dummyExpenses);
 });
+
+test('Set expenses in the state according to the given expenses', () => {
+    const expenses = [dummyExpenses[0], dummyExpenses[1]];
+    const action = {
+        type: 'SET_EXPENSES',
+        expenses: [dummyExpenses[2]]
+    };
+    const state = expensesReducer(expenses, action);
+    expect(state).toEqual([dummyExpenses[2]]);
+});
