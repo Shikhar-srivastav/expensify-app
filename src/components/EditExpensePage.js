@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { useParams, useNavigate } from "react-router-dom";
 import ExpenseForm from '../components/ExpenseForm'
-import { editExpense, removeExpense } from '../actions/expenses';
+import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
     onSubmit = expense => {
@@ -36,10 +36,10 @@ export class EditExpensePage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
     editExpense: (_id, expense) => {
-        dispatch(editExpense(_id, expense));
+        dispatch(startEditExpense(_id, expense));
     },
     removeExpense: (_id) => {
-        dispatch(removeExpense(_id));
+        dispatch(startRemoveExpense(_id));
     },
     navigate: useNavigate(),
     params: useParams()

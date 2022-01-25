@@ -4,11 +4,13 @@ import {
     startAddExpense,
     addExpense,
     editExpense,
+    startEditExpense,
     removeExpense,
+    startRemoveExpense,
     setExpenses,
     startSetExpenses
 } from '../../actions/expenses';
-import { getDatabase, ref, get, set, child, push } from 'firebase/database';
+import { getDatabase, ref, get, set, child } from 'firebase/database';
 import expenses from '../fixtures/expenses';
 
 const createMockStore = configureMockStore([thunk]); 
@@ -29,6 +31,32 @@ test('Set up removeExpense action object', () => {
     });
 });
 
+test('Remove expense from database & store', (done) => {
+    const store = createMockStore({});
+    store.dispatch(startRemoveExpense('1')).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'REMOVE_EXPENSE',
+            _id: '1'
+        });
+        const dbRef = ref(getDatabase());
+        return get(child(dbRef, 'expenses'));
+    }).then((snapshot) => {
+        const expensesData = [];
+        snapshot.forEach(expense => {
+            expensesData.push({
+                _id: expense.key,
+                ...expense.val()
+            });;
+        });
+        expect(expensesData).toEqual([
+            expenses[1],
+            expenses[2]
+        ]);
+        done();
+    });
+});
+
 test('Set up editExpense action object', () => {
     const action = editExpense('123abc', {
         description: 'Rent',
@@ -41,6 +69,34 @@ test('Set up editExpense action object', () => {
             description: 'Rent',
             amount: 5000
         }
+    });
+});
+
+test('Update the given expense in database and store', (done) => {
+    const store = createMockStore({});
+    const updates = {
+        note: 'smth'
+    };
+    const { description, amount, note, createdAt } = expenses[0];
+    const afterUpdate = {
+        description,
+        amount,
+        note,
+        createdAt,
+        ...updates
+    };
+    store.dispatch(startEditExpense('1', afterUpdate)).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'EDIT_EXPENSE',
+            _id: '1',
+            updates: afterUpdate
+        });
+        const dbRef = ref(getDatabase());
+        return get(child(dbRef, `expenses/1`));
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual(afterUpdate);
+        done();
     });
 });
 
@@ -112,7 +168,7 @@ test('Setup setExpenses action object', () => {
 });
 
 test('Fetch expenses from database', (done) => {
-    const store = createMockStore();
+    const store = createMockStore({});
     store.dispatch(startSetExpenses()).then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual({
