@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 import { connect } from 'react-redux';
-import { useParams, useNavigate } from "react-router-dom";
-import ExpenseForm from '../components/ExpenseForm'
+import { useParams, useNavigate } from 'react-router-dom';
+import ExpenseForm from '../components/ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
     onSubmit = expense => {
         this.props.editExpense(this.props.params._id, expense);
-        this.props.navigate('/');
+        this.props.navigate('/dashboard');
     }
     onClick = () => {
         this.props.removeExpense(this.props.params._id);
-        this.props.navigate('/');
+        this.props.navigate('/dashboard');
     }
     currentExpense = this.props.expenses.find(({ _id }) => (
         _id === this.props.params._id

@@ -8,7 +8,8 @@ export const addExpense = (expense) => ({
 });
 
 export const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const {
             description = '',
             note = '',
@@ -16,7 +17,8 @@ export const startAddExpense = (expenseData = {}) => {
             createdAt = 0
         } = expenseData;
         const database = getDatabase(app);
-        const newExpenseRef = push(ref(database, 'expenses'));
+        const path = `users/${uid}/expenses`;
+        const newExpenseRef = push(ref(database, path));
         const expense = {
             description,
             note,
@@ -38,10 +40,12 @@ export const removeExpense = (_id) => ({
 });
 
 export const startRemoveExpense = (_id) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const database = getDatabase();
+        const path = `users/${uid}/expenses/${_id}`
         return set(
-            ref(database, `expenses/${_id}`),
+            ref(database, path),
             null
         ).then(() => {
             dispatch(removeExpense(_id));
@@ -56,10 +60,12 @@ export const editExpense = (_id, updates) => ({
 });
 
 export const startEditExpense = (_id, updates) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const database = getDatabase();
+        const path = `users/${uid}/expenses/${_id}`;
         const updateData = {};
-        updateData['expenses/' + _id] = updates;
+        updateData[path] = updates;
         return update(ref(database), updateData).then(() => {
             dispatch(editExpense(_id, updates));
         });
@@ -72,10 +78,12 @@ export const setExpenses = (expenses) => ({
 })
 
 export const startSetExpenses = () => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const database = getDatabase();
-        const dbRef = ref(database)
-        return get(child(dbRef, 'expenses')).then((snapshot) => {
+        const dbRef = ref(database);
+        const path = `users/${uid}/expenses`
+        return get(child(dbRef, path)).then((snapshot) => {
             const expenses = [];
             snapshot.forEach(expense => {
                 expenses.push({

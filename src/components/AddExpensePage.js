@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export class AddExpensePage extends React.Component {
     onSubmit = expense => {
         this.props.startAddExpense(expense);
-        this.props.navigate('/');
+        this.props.navigate('/dashboard');
     }
     render() {
         return (

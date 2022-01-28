@@ -1,13 +1,16 @@
 import React from 'react';
 // import ReactShallowRenderer from 'react-test-renderer/shallow';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
 
 test('Render header for the app', () => {
     const wrapper = shallow(<Header />);
     expect(wrapper).toMatchSnapshot();
-    // const renderer = new ReactShallowRenderer();
-    // renderer.render(<Header />);
-    // expect(renderer.getRenderOutput()).toMatchSnapshot();
+});
+
+test('Call start logout on button click', () => {
+    const logoutSpy = jest.fn();
+    const wrapper = shallow(<Header startLogout={logoutSpy} />);
+    wrapper.find('button').simulate('click');
+    expect(logoutSpy).toHaveBeenCalled();
 });
