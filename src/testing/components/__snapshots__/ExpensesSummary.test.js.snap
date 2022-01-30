@@ -1,7 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render ExpensesSummary correctly 1`] = `
-<div>
-  Viewing 2 expense(s) totalling Rs0.00
+<div
+  className="page-header"
+>
+  <div
+    className="container"
+  >
+    <p>
+      Viewing 
+      <span>
+        2
+      </span>
+       expense(s) totalling 
+      <span>
+        Rs
+        0.00
+      </span>
+    </p>
+    <div>
+      <Link
+        to="/create"
+      >
+        <button
+          className="button"
+        >
+          Add Expense
+        </button>
+      </Link>
+    </div>
+  </div>
 </div>
 `;

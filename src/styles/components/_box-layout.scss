@@ -1,0 +1,22 @@
+.box-layout {
+	background-image: url('/public/images/bg.jpg');
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+}
+
+.box-layout__modal {
+	background: fade-out(white, 0.15);
+	border-radius: 3px;
+	text-align: center;
+	min-width: 25rem;
+	max-width: 30rem;
+	padding: $l-size;
+	box-sizing: border-box;
+	p {
+		margin: $m-size 0;
+	}
+}

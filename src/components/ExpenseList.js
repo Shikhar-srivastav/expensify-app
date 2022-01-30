@@ -4,10 +4,15 @@ import ExpenseListItem from './ExpenseListItem';
 import getFilteredExpenses from '../selectors/expenses';
 
 export const ExpenseList = (props) => (
-    <div>
+    <div className='container'>
+        <div className='list-header'>
+            <div className='show-for-mobile'>Expenses</div>
+            <div className='show-for-desktop'>Expense</div>
+            <div className='show-for-desktop'>Amount</div>
+        </div>
         {
             props.expenses.length === 0 ? (
-                <p>No expenses</p>
+                <p className='message'>NO EXPENSES</p>
             ) : (
                 props.expenses.map(expense => (
                     <ExpenseListItem

@@ -22,6 +22,6 @@ test('Render AddExpensePage correctly', () => {
 
 test('Handle onSubmit and navigate', () => {
     wrapper.find('ExpenseForm').prop('onSubmit')(expenses[0]);
-    expect(navigateSpy).toHaveBeenLastCalledWith('/');
+    expect(navigateSpy).toHaveBeenLastCalledWith('/dashboard');
     expect(addExpenseSpy).toHaveBeenLastCalledWith(expenses[0]);
 });

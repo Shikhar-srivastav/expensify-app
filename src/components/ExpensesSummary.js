@@ -1,12 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import numeral from 'numeral';
 import getFilteredExpenses from '../selectors/expenses';
 import getTotalExpenses from '../selectors/total';
 
 export const ExpensesSummary = props => (
-    <div>
-        {`Viewing ${props.total.count} expense(s) totalling Rs${numeral(props.total.amount).format('0,0.00')}`}
+    <div className='page-header'>
+        <div className='container'>
+            <p>
+                Viewing <span>{props.total.count}</span> expense(s) totalling <span>Rs{numeral(props.total.amount).format('0,0.00')}</span>
+            </p>
+            <div>
+                <Link to='/create'>
+                    <button className='button'>Add Expense</button>
+                </Link>
+            </div>
+        </div>
      </div>
 );
 

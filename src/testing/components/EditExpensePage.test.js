@@ -30,7 +30,7 @@ test('Handle editExpense and navigate', () => {
         expenses[0]._id,
         expenses[0]
     );
-    expect(navigateSpy).toHaveBeenLastCalledWith('/');
+    expect(navigateSpy).toHaveBeenLastCalledWith('/dashboard');
 });
 
 test('Handle removeExpense and navigate', () => {
@@ -38,5 +38,5 @@ test('Handle removeExpense and navigate', () => {
     expect(removeExpenseSpy).toHaveBeenLastCalledWith(
         expenses[0]._id
     );
-    expect(navigateSpy).toHaveBeenLastCalledWith('/');
+    expect(navigateSpy).toHaveBeenLastCalledWith('/dashboard');
 });

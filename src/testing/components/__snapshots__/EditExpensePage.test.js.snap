@@ -2,25 +2,40 @@
 
 exports[`Render EditExpensePage correctly 1`] = `
 <div>
-  <h1>
-    Edit Expense
-  </h1>
-  <ExpenseForm
-    expense={
-      Object {
-        "_id": "1",
-        "amount": 10,
-        "createdAt": 0,
-        "description": "Gum",
-        "note": "",
-      }
-    }
-    onSubmit={[Function]}
-  />
-  <button
-    onClick={[Function]}
+  <div
+    className="page-header"
   >
-    Remove
-  </button>
+    <div
+      className="container"
+    >
+      <h1
+        className="page-title"
+      >
+        Edit Expense
+      </h1>
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <ExpenseForm
+      expense={
+        Object {
+          "_id": "1",
+          "amount": 10,
+          "createdAt": 0,
+          "description": "Gum",
+          "note": "",
+        }
+      }
+      onSubmit={[Function]}
+    />
+    <button
+      className="button__secondary"
+      onClick={[Function]}
+    >
+      Remove Expense
+    </button>
+  </div>
 </div>
 `;

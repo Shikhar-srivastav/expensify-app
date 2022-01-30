@@ -1,0 +1,14 @@
+.page-header {
+	background-color: $grey;
+	padding: $m-size 0;
+	p {
+		span {
+			font-weight: bold;
+		}
+	}
+}
+
+.page-title {
+	font-weight: 300;
+	margin-bottom: 0;
+}

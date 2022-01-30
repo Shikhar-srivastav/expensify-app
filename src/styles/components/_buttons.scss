@@ -1,7 +1,14 @@
-button {
-    padding: $s-size;
-    background-color: $blue;
-    color: white;
-    border: none;
-    outline: none;
+.button {
+	padding: $s-size $m-size;
+	background-color: $blue;
+	font-weight: 300;
+	color: white;
+	border: none;
+	outline: none;
+}
+
+.button__secondary {
+	@extend .button;
+	background: #888888;
+	margin-top: $s-size;
 }

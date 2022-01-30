@@ -1,0 +1,23 @@
+header {
+	background-color: $dark-blue;
+}
+
+.header__container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.header__title {
+	color: white;
+	text-decoration: none;
+	border: none;
+	outline: none;
+}
+
+.header__button {
+	border: none;
+	outline: none;
+	color: white;
+	background: none;
+}

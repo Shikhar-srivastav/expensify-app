@@ -19,14 +19,21 @@ export class EditExpensePage extends React.Component {
     render() {
         return (
             <div>
-                <h1>Edit Expense</h1>
-                <ExpenseForm
-                    expense={this.currentExpense}
-                    onSubmit={this.onSubmit}
-                />
-                <button
-                    onClick={this.onClick}
-                >Remove</button>
+                <div className='page-header'>
+                    <div className='container'>
+                        <h1 className='page-title'>Edit Expense</h1>
+                    </div>
+                </div>
+                <div className='container'>
+                    <ExpenseForm
+                        expense={this.currentExpense}
+                        onSubmit={this.onSubmit}
+                    />
+                    <button
+                        className='button__secondary'
+                        onClick={this.onClick}
+                    >Remove Expense</button>
+                </div>
             </div>
         );
     }

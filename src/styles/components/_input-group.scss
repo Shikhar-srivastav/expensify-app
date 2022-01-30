@@ -1,0 +1,13 @@
+.input-group {
+	display: flex;
+	@media (max-width: 45rem) {
+		flex-direction: column;
+	}
+}
+
+.input-group__item {
+	height: fit-content;
+	width: fit-content;
+	margin-right: $m-size;
+	margin-bottom: $s-size;
+}
